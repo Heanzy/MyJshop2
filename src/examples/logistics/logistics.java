@@ -1014,6 +1014,461 @@ class Method4 extends Method
 	}
 }
 
+class Method5 extends Method
+{
+	public Method5()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
+
+class Method6 extends Method
+{
+	public Method6()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
+
+class Method7 extends Method
+{
+	public Method7()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
+
+
+class Method8 extends Method
+{
+	public Method8()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
+
+class Method9 extends Method
+{
+	public Method9()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
+
+class Method10 extends Method
+{
+	public Method10()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
+
+class Method11 extends Method
+{
+	public Method11()
+	{
+		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
+		TaskList[] subsIn = new TaskList[2];
+
+		subsIn[0] = createTaskList0();
+		subsIn[1] = createTaskList1();
+
+		setSubs(subsIn);
+	}
+
+	TaskList createTaskList0()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
+
+		return retVal;
+	}
+
+	TaskList createTaskList1()
+	{
+		TaskList retVal;
+
+		retVal = new TaskList(1, true);
+		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
+
+		return retVal;
+	}
+
+	public Precondition getIterator(Term[] unifier, int which)
+	{
+		Precondition p;
+
+		switch (which)
+		{
+			case 0:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			case 1:
+				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
+				break;
+			default:
+				return null;
+		}
+
+		p.reset();
+
+		return p;
+	}
+
+	public String getLabel(int which)
+	{
+		switch (which)
+		{
+			case 0: return "airplane-already-there";
+			case 1: return "fly-airplane-in";
+			default: return null;
+		}
+	}
+}
 class Axiom0 extends Axiom
 {
 	public Axiom0()
@@ -1048,6 +1503,7 @@ class Axiom0 extends Axiom
 		}
 	}
 }
+
 
 class Axiom1 extends Axiom
 {
