@@ -227,6 +227,8 @@ class Operator7 extends Operator
 		setAdd(addIn);
 	}
 
+
+
 	public Precondition getIterator(Term[] unifier, int which)
 	{
 		Precondition p;
@@ -236,6 +238,96 @@ class Operator7 extends Operator
 
 		return p;
 	}
+}
+
+class Operator8 extends Operator
+{
+    public Operator8()
+    {
+        super(new Predicate(7, 1, new TermList(TermVariable.getVariable(0), TermList.NIL)), -1, -1, new TermNumber(1.0));
+
+
+        DelAddElement[] delIn = new DelAddElement[1];
+        delIn[0] = new DelAddProtection(new Predicate(0, 1));
+
+        setDel(delIn);
+
+        DelAddElement[] addIn = new DelAddElement[0];
+
+        setAdd(addIn);
+    }
+
+
+
+    public Precondition getIterator(Term[] unifier, int which)
+    {
+        Precondition p;
+
+        p = (new PreconditionNil(1)).setComparator(null);
+        p.reset();
+
+        return p;
+    }
+}
+
+class Operator9 extends Operator
+{
+    public Operator9()
+    {
+        super(new Predicate(7, 1, new TermList(TermVariable.getVariable(0), TermList.NIL)), -1, -1, new TermNumber(1.0));
+
+
+        DelAddElement[] delIn = new DelAddElement[1];
+        delIn[0] = new DelAddProtection(new Predicate(0, 1));
+
+        setDel(delIn);
+
+        DelAddElement[] addIn = new DelAddElement[0];
+
+        setAdd(addIn);
+    }
+
+
+
+    public Precondition getIterator(Term[] unifier, int which)
+    {
+        Precondition p;
+
+        p = (new PreconditionNil(1)).setComparator(null);
+        p.reset();
+
+        return p;
+    }
+}
+
+class Operator10 extends Operator
+{
+    public Operator10()
+    {
+        super(new Predicate(7, 1, new TermList(TermVariable.getVariable(0), TermList.NIL)), -1, -1, new TermNumber(1.0));
+
+
+        DelAddElement[] delIn = new DelAddElement[1];
+        delIn[0] = new DelAddProtection(new Predicate(0, 1));
+
+        setDel(delIn);
+
+        DelAddElement[] addIn = new DelAddElement[0];
+
+        setAdd(addIn);
+    }
+
+
+
+    public Precondition getIterator(Term[] unifier, int which)
+    {
+        Precondition p;
+
+        p = (new PreconditionNil(1)).setComparator(null);
+        p.reset();
+
+        return p;
+    }
 }
 
 class Precondition0 extends Precondition
@@ -1405,70 +1497,6 @@ class Method10 extends Method
 	}
 }
 
-class Method11 extends Method
-{
-	public Method11()
-	{
-		super(new Predicate(4, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))));
-		TaskList[] subsIn = new TaskList[2];
-
-		subsIn[0] = createTaskList0();
-		subsIn[1] = createTaskList1();
-
-		setSubs(subsIn);
-	}
-
-	TaskList createTaskList0()
-	{
-		TaskList retVal;
-
-		retVal = new TaskList(1, true);
-		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(6, 3, new TermList(new TermList(TermConstant.getConstant(3), new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), TermList.NIL)), true, true));
-
-		return retVal;
-	}
-
-	TaskList createTaskList1()
-	{
-		TaskList retVal;
-
-		retVal = new TaskList(1, true);
-		retVal.subtasks[0] = new TaskList(new TaskAtom(new Predicate(5, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), new TermList(TermVariable.getVariable(1), TermList.NIL)))), true, true));
-
-		return retVal;
-	}
-
-	public Precondition getIterator(Term[] unifier, int which)
-	{
-		Precondition p;
-
-		switch (which)
-		{
-			case 0:
-				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(1), TermList.NIL))), unifier)).setComparator(null);
-				break;
-			case 1:
-				p = (new PreconditionAtomic(new Predicate(3, 3, new TermList(TermVariable.getVariable(0), new TermList(TermVariable.getVariable(2), TermList.NIL))), unifier)).setComparator(null);
-				break;
-			default:
-				return null;
-		}
-
-		p.reset();
-
-		return p;
-	}
-
-	public String getLabel(int which)
-	{
-		switch (which)
-		{
-			case 0: return "airplane-already-there";
-			case 1: return "fly-airplane-in";
-			default: return null;
-		}
-	}
-}
 class Axiom0 extends Axiom
 {
 	public Axiom0()
@@ -1546,7 +1574,7 @@ public class logistics extends Domain
 	{
 		TermVariable.initialize(10);
 
-		constants = new String[10];
+		constants = new String[11];
 		constants[0] = "obj-at";
 		constants[1] = "truck-at";
 		constants[2] = "in-truck";
@@ -1557,15 +1585,23 @@ public class logistics extends Domain
 		constants[7] = "different";
 		constants[8] = "airport";
 		constants[9] = "same";
+		constants[10] = "train-at";
 
-		compoundTasks = new String[5];
-		compoundTasks[0] = "in-city-delivery";
+		compoundTasks = new String[11];
+		compoundTasks[0] = "in-city-delivery-by-third";
 		compoundTasks[1] = "air-deliver-obj";
-		compoundTasks[2] = "obj-at";
+		compoundTasks[2] = "obj-at-by-third";
 		compoundTasks[3] = "truck-at";
 		compoundTasks[4] = "fly-airplane";
+		compoundTasks[5] = "in-region-delivery-by-third";
+        compoundTasks[6] = "obj-at-by-self";
+        compoundTasks[7] = "in-region-delivery-by-self";
+        compoundTasks[8] = "train-deliver-obj";
+        compoundTasks[9] = "drive-train";
+        compoundTasks[10] = "in-city-delivery-by-self";
 
-		primitiveTasks = new String[8];
+
+		primitiveTasks = new String[11];
 		primitiveTasks[0] = "!load-truck";
 		primitiveTasks[1] = "!unload-truck";
 		primitiveTasks[2] = "!load-airplane";
@@ -1573,9 +1609,14 @@ public class logistics extends Domain
 		primitiveTasks[4] = "!drive-truck";
 		primitiveTasks[5] = "!fly-airplane";
 		primitiveTasks[6] = "!add-protection";
-		primitiveTasks[7] = "!delete-protection";
+		primitiveTasks[7] = "!load-train";
+        primitiveTasks[8] = "!drive-train";
+        primitiveTasks[9] = "!delete-protection";
+        primitiveTasks[10] = "!unload-train";
 
-		methods = new Method[5][];
+
+
+		methods = new Method[11][];
 
 		methods[0] = new Method[1];
 		methods[0][0] = new Method1();
@@ -1591,6 +1632,27 @@ public class logistics extends Domain
 
 		methods[4] = new Method[1];
 		methods[4][0] = new Method4();
+
+        methods[5] = new Method[1];
+        methods[5][0] = new Method5();
+
+        methods[6] = new Method[1];
+        methods[6][0] = new Method6();
+
+        methods[7] = new Method[1];
+        methods[7][0] = new Method7();
+
+        methods[8] = new Method[1];
+        methods[8][0] = new Method8();
+
+        methods[9] = new Method[1];
+        methods[9][0] = new Method9();
+
+        methods[10] = new Method[1];
+        methods[10][0] = new Method10();
+
+
+
 
 
 		ops = new Operator[8][];
@@ -1618,6 +1680,15 @@ public class logistics extends Domain
 
 		ops[7] = new Operator[1];
 		ops[7][0] = new Operator7();
+
+        ops[8] = new Operator[1];
+        ops[8][0] = new Operator8();
+
+        ops[9] = new Operator[1];
+        ops[9][0] = new Operator9();
+
+        ops[10] = new Operator[1];
+        ops[10][0] = new Operator10();
 
 		axioms = new Axiom[10][];
 
