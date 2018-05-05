@@ -141,7 +141,7 @@
 			 ((in-region ?loc-from ?region-from)
 			 (in-region ?loc-to ?region-from)
 (third-in-region ?third-repository ?region-from)
-			 (truck ?truck ?region-from))
+			 ;(truck ?truck ?region-from))
 			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
 (in-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
 
@@ -149,7 +149,7 @@
 			 (in-region ?loc-from ?region-from)
 			 (in-region ?loc-to ?region-to)
 			 (different ?region-from ?region-to)
-(truck ?truck ?region-from))
+             ;(truck ?truck ?region-from))
 			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
 			 (in-city-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
 
@@ -158,7 +158,7 @@
 			 (in-region ?loc-from ?region-from)
 			 (in-region ?loc-to ?region-from)
 			 (different ?region-tnow ?region-from)
-			 (truck ?truck ?region-from))
+			 ;(truck ?truck ?region-from))
 			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
 			 (in-city-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
 
@@ -167,7 +167,7 @@
 			 (in-region ?loc-to ?region-to)
 			 (different ?region-tnow ?region-from)
 			 (different ?region-from ?region-to)
-			 (truck ?truck ?region-from))
+			 ;(truck ?truck ?region-from))
 			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
 			 (in-city-delivery-by-third ?truck ?obj ?third-repository ?loc-to)))
 
@@ -178,7 +178,7 @@
              ()
 
              ((in-region ?loc-from ?region-from)
-             (truck ?truck ?region-from))
+             ;(truck ?truck ?region-from))
              ((truck-at ?truck ?loc-from)
                        (:immediate !load-truck-by-third ?obj ?truck ?loc-from)
                        (truck-at ?truck ?loc-to)
@@ -232,7 +232,7 @@
     			 ((in-region ?loc-from ?region-from)
     			 (in-region ?loc-to ?region-from)
     (self-in-region ?self-repository ?region-from)
-    			 (truck ?truck ?region-from))
+    			 ;(truck ?truck ?region-from))
 
     			((in-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
     (in-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
@@ -241,7 +241,7 @@
     			 (in-region ?loc-from ?region-from)
     			 (in-region ?loc-to ?region-to)
     			 (different ?region-from ?region-to)
-    (truck ?truck ?region-from))
+                 ;(truck ?truck ?region-from))
 
     			((in-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
     			 (in-city-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
@@ -251,7 +251,7 @@
     			 (in-region ?loc-from ?region-from)
     			 (in-region ?loc-to ?region-from)
     			 (different ?region-tnow ?region-from)
-    			 (truck ?truck ?region-from))
+    			 ;(truck ?truck ?region-from))
 
     			((in-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
     			 (in-city-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
@@ -261,7 +261,7 @@
     			 (in-region ?loc-to ?region-to)
     			 (different ?region-tnow ?region-from)
     			 (different ?region-from ?region-to)
-    			 (truck ?truck ?region-from))
+    			 ;(truck ?truck ?region-from))
 
     			((in-region-delivery-by-self ?truck ?obj ?loc-from ?slef-repository)
     			 (in-city-delivery-by-self ?truck ?obj ?self-repository ?loc-to)))
@@ -272,7 +272,7 @@
                  ()
 
                  ((in-region ?loc-from ?region-from)
-                 (truck ?truck ?region-from))
+                 ;(truck ?truck ?region-from))
 
                  ((truck-at ?truck ?loc-from)
                            (:immediate !load-truck-by-self ?obj ?truck ?loc-from)
