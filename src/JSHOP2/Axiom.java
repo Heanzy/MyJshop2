@@ -7,6 +7,7 @@ package JSHOP2;
  *  @author <a href="http://www.cs.umd.edu/~okhtay">http://www.cs.umd.edu/~okhtay</a>
  *  @version 1.0.3
 */
+
 public abstract class Axiom extends DomainElement
 {
   /** Number of branches of this axiom. Each branch represents one different
