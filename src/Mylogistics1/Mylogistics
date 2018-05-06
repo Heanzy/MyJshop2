@@ -111,7 +111,7 @@
        (in-city ?airport-goal ?city-goal))
 
        ((in-city-delivery-by-third ?truck-now ?obj ?loc-now ?airport-now)
-                (air-deliver-obj ?obj ?airport-now ?airport-goal)
+                (air-deliver-obj-by-third ?obj ?airport-now ?airport-goal)
                 (in-city-delivery-by-third ?truck-goal ?obj ?airport-goal ?loc-goal))
 
 
@@ -139,10 +139,11 @@
                (airport ?airport-now)
                (in-city ?airport-now ?city-now)
                (airport ?airport-goal)
-               (in-city ?airport-goal ?city-any))
+               (in-city ?airport-goal ?city-any)
+               (different ?city-any ?city-now))
 
                ((in-city-delivery-by-third ?truck-now ?obj ?loc-now ?airport-now)
-                        (air-deliver-obj ?obj ?airport-now ?airport-goal)
+                        (air-deliver-obj-by-third ?obj ?airport-now ?airport-goal)
                         (obj-at-by-third ?obj ?loc-goal))
 
         ((in-city ?loc-goal ?city-goal)
@@ -154,12 +155,12 @@
                (trainstation ?trainstation-now)
                 (in-city ?trainstation-now ?city-now)
                (trainstation ?trainstation-goal)
-                (in-city ?trainstation-goal ?city-any))
+                (in-city ?trainstation-goal ?city-any)
+                (different ?city-any ?city-now))
 
                 ((in-city-delivery-by-third ?truck-now ?obj ?loc-now ?trainstation-now)
                         (train-deliver-obj-by-third ?obj ?trainstation-now ?trainstation-goal)
                         (obj-at-by-third ?obj ?loc-goal))
-
     )
 
 
@@ -167,45 +168,69 @@
 
     (:method (in-city-delivery-by-third ?truck ?obj ?loc-from ?loc-to)
              ((same ?loc-from ?loc-to))
-
              ()
 
 			 ((in-region ?loc-from ?region-from)
-			 (in-region ?loc-to ?region-from)
-(third-in-region ?third-repository ?region-from)
+			 (in-region ?loc-to ?region-to)
+			 (same ?region-to ?region-from)
+             (third-in-region ?third-repository ?region-from)
 			 ;(truck ?truck ?region-from)
 			 )
 			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
-(in-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
+            (in-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
+
+            ((in-region ?loc-from ?region-from)
+            			 (in-region ?loc-to ?region-to)
+            			 (same ?region-to ?region-from)
+                         (third-in-region ?third-repository ?region-any)
+                         (different ?region-any ?region-to)
+            			 ;(truck ?truck ?region-from)
+            			 )
+            			((out-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
+                        (out-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
 
 			((third-in-region ?third-repository ?region-from)
+			 (third-in-region ?third-repository ?region-to)
 			 (in-region ?loc-from ?region-from)
 			 (in-region ?loc-to ?region-to)
 			 (different ?region-from ?region-to)
              ;(truck ?truck ?region-from)
              )
 			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
-			 (in-city-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
+			 (out-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
 
 
-			((third-in-region ?third-repository ?region-tnow)
-			 (in-region ?loc-from ?region-from)
-			 (in-region ?loc-to ?region-from)
-			 (different ?region-tnow ?region-from)
-			 ;(truck ?truck ?region-from)
-			 )
-			((in-city-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
-			 (in-city-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
-
-			((third-in-region ?third-repository ?region-tnow)
+			((third-in-region ?third-repository ?region-from)
 			 (in-region ?loc-from ?region-from)
 			 (in-region ?loc-to ?region-to)
-			 (different ?region-tnow ?region-from)
+			 (different ?region-to ?region-from)
+			 ;(truck ?truck ?region-from)
+			 )
+			((in-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
+			 (out-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
+
+			((third-in-region ?third-repository ?region-to)
+			 (in-region ?loc-from ?region-from)
+			 (in-region ?loc-to ?region-to)
+			 ;(different ?region-tnow ?region-from)
 			 (different ?region-from ?region-to)
 			 ;(truck ?truck ?region-from)
 			 )
-			((in-city-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
-			 (in-city-delivery-by-third ?truck ?obj ?third-repository ?loc-to)))
+			((out-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
+			 (in-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
+
+			 ((third-in-region ?third-repository ?region-any)
+             			 (in-region ?loc-from ?region-from)
+             			 (in-region ?loc-to ?region-to)
+             			 (different ?region-any ?region-from)
+             			 (different ?region-from ?region-to)
+             			 (different ?region-any ?region-to)
+             			 ;(truck ?truck ?region-from)
+             			 )
+             			((out-region-delivery-by-third ?truck ?obj ?loc-from ?third-repository)
+             			 (in-region-delivery-by-third ?truck ?obj ?third-repository ?loc-to))
+
+	)
 
 
 
@@ -213,13 +238,31 @@
 			((same ?loc-from ?loc-to))
              ()
 
-             ((in-region ?loc-from ?region-from)
+             (
+             (different ?loc-from ?loc-to)
+             ;(in-region ?loc-from ?region-from)
+             ;(in-region ?loc-from ?region-to)
              ;(truck ?truck ?region-from)
              )
              ((truck-at ?truck ?loc-from)
                        (:immediate !load-truck-by-third ?obj ?truck ?loc-from)
                        (truck-at ?truck ?loc-to)
                        (:immediate !unload-truck-by-third ?obj ?truck ?loc-to)))
+
+    (:method(out-region-delivery-by-third ?truck ?obj ?loc-from ?loc-to)
+    			((same ?loc-from ?loc-to))
+                 ()
+
+                 (
+                 (different ?loc-from ?loc-to)
+                 ;(in-region ?loc-from ?region-from)
+                 ;(in-region ?loc-from ?region-to)
+                 ;(truck ?truck ?region-from)
+                 )
+                 ((truck-at ?truck ?loc-from)
+                           (:immediate !load-truck-by-third ?obj ?truck ?loc-from)
+                           (truck-at ?truck ?loc-to)
+                           (:immediate !unload-truck-by-third ?obj ?truck ?loc-to)))
 
 
     (:method (obj-at-by-self ?obj ?loc-goal)
@@ -243,7 +286,7 @@
            (in-city ?airport-goal ?city-goal))
 
            ((in-city-delivery-by-self ?truck-now ?obj ?loc-now ?airport-now)
-                    (air-deliver-obj ?obj ?airport-now ?airport-goal)
+                    (air-deliver-obj-by-self ?obj ?airport-now ?airport-goal)
                     (in-city-delivery-by-self ?truck-goal ?obj ?airport-goal ?loc-goal))
 
            ((in-city ?loc-goal ?city-goal)
@@ -271,10 +314,11 @@
                        (airport ?airport-now)
                        (in-city ?airport-now ?city-now)
                        (airport ?airport-goal)
-                       (in-city ?airport-goal ?city-any))
+                       (in-city ?airport-goal ?city-any)
+                       (different ?city-any ?city-now))
 
                        ((in-city-delivery-by-self ?truck-now ?obj ?loc-now ?airport-now)
-                                (air-deliver-obj ?obj ?airport-now ?airport-goal)
+                                (air-deliver-obj-by-self ?obj ?airport-now ?airport-goal)
                                 (obj-at-by-self ?obj ?loc-goal))
 
             ((in-city ?loc-goal ?city-goal)
@@ -286,7 +330,8 @@
                        (trainstation ?trainstation-now)
                         (in-city ?trainstation-now ?city-now)
                        (trainstation ?trainstation-goal)
-                        (in-city ?trainstation-goal ?city-any))
+                        (in-city ?trainstation-goal ?city-any)
+                        (different ?city-any ?city-now))
 
                         ((in-city-delivery-by-self ?truck-now ?obj ?loc-now ?trainstation-now)
                                 (train-deliver-obj-by-self ?obj ?trainstation-now ?trainstation-goal)
@@ -299,15 +344,30 @@
                  ()
 
     			 ((in-region ?loc-from ?region-from)
-    			 (in-region ?loc-to ?region-from)
-    (self-in-region ?self-repository ?region-from)
+    			 (in-region ?loc-to ?region-to)
+    			 (same ?region-to ?region-from)
+                  (self-in-region ?self-repository ?region-from)
     			 ;(truck ?truck ?region-from)
     			 )
 
     			((in-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
     (in-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
 
+
+                ((in-region ?loc-from ?region-from)
+                    			 (in-region ?loc-to ?region-to)
+                    			 (same ?region-to ?region-from)
+                                  (self-in-region ?self-repository ?region-any)
+                                  (different ?region-any ?region-to)
+                    			 ;(truck ?truck ?region-from)
+                    			 )
+
+                    			((out-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
+                    (out-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
+
+
     			((self-in-region ?self-repository ?region-from)
+    			 (self-in-region ?self-repository ?region-to)
     			 (in-region ?loc-from ?region-from)
     			 (in-region ?loc-to ?region-to)
     			 (different ?region-from ?region-to)
@@ -315,36 +375,52 @@
                  )
 
     			((in-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
-    			 (in-city-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
+    			 (out-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
 
 
-    			((self-in-region ?self-repository ?region-tnow)
+    			((self-in-region ?self-repository ?region-from)
     			 (in-region ?loc-from ?region-from)
-    			 (in-region ?loc-to ?region-from)
-    			 (different ?region-tnow ?region-from)
+    			 (in-region ?loc-to ?region-to)
+    			 (different ?region-to ?region-from)
     			 ;(truck ?truck ?region-from)
     			 )
 
-    			((in-city-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
-    			 (in-city-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
+    			((in-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
+    			 (out-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
 
-    			((self-in-region ?self-repository ?region-tnow)
+    			((self-in-region ?self-repository ?region-to)
     			 (in-region ?loc-from ?region-from)
     			 (in-region ?loc-to ?region-to)
-    			 (different ?region-tnow ?region-from)
+    			 ;(different ?region-tnow ?region-from)
     			 (different ?region-from ?region-to)
     			 ;(truck ?truck ?region-from)
     			 )
 
-    			((in-city-delivery-by-self ?truck ?obj ?loc-from ?slef-repository)
-    			 (in-city-delivery-by-self ?truck ?obj ?self-repository ?loc-to)))
+    			((out-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
+    			 (in-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
+
+    			 ((self-in-region ?self-repository ?region-any)
+                     			 (in-region ?loc-from ?region-from)
+                     			 (in-region ?loc-to ?region-to)
+                     			 (different ?region-any ?region-from)
+                     			 (different ?region-from ?region-to)
+                     			 (different ?region-any ?region-to)
+                     			 ;(truck ?truck ?region-from)
+                     			 )
+
+                     			((out-region-delivery-by-self ?truck ?obj ?loc-from ?self-repository)
+                     			 (in-region-delivery-by-self ?truck ?obj ?self-repository ?loc-to))
+
+    )
 
 
     (:method(in-region-delivery-by-self ?truck ?obj ?loc-from ?loc-to)
     			((same ?loc-from ?loc-to))
                  ()
 
-                 ((in-region ?loc-from ?region-from)
+                 (
+                 ;(in-region ?loc-from ?region-from)
+                  ;(in-region ?loc-from ?region-to)
                  ;(truck ?truck ?region-from)
                  )
 
@@ -352,6 +428,21 @@
                            (:immediate !load-truck-by-self ?obj ?truck ?loc-from)
                            (truck-at ?truck ?loc-to)
                            (:immediate !unload-truck-by-self ?obj ?truck ?loc-to)))
+
+    (:method(out-region-delivery-by-self ?truck ?obj ?loc-from ?loc-to)
+        			((same ?loc-from ?loc-to))
+                     ()
+
+                     (
+                     ;(in-region ?loc-from ?region-from)
+                      ;(in-region ?loc-to ?region-to)
+                     ;(truck ?truck ?region-from)
+                     )
+
+                     ((truck-at ?truck ?loc-from)
+                               (:immediate !load-truck-by-self ?obj ?truck ?loc-from)
+                               (truck-at ?truck ?loc-to)
+                               (:immediate !unload-truck-by-self ?obj ?truck ?loc-to)))
 
 
     (:method (truck-at ?truck ?loc-to)
@@ -439,14 +530,14 @@
                            (!unload-train-by-self ?obj ?train ?trianstation-to)))
 
 
-    (:method (drive-train ?train ?trianstation-to)
+    (:method (drive-train ?train ?loc-to)
              train-already-there
-             ((train-at ?train ?trainstation-to))
-             ((:immediate !add-protection (train-at ?train ?trainstation-to)))
+             ((train-at ?train ?loc-to))
+             ((:immediate !add-protection (train-at ?train ?loc-to)))
 
              drive-train-in
-             ((train-at ?train ?trainstation-from))
-             ((:immediate !drive-train ?airplane ?airport-from ?airport-to)))
+             ((train-at ?train ?loc-from))
+             ((:immediate !drive-train ?train ?loc-from ?loc-to)))
 
 
 
